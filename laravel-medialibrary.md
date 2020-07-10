@@ -1,4 +1,4 @@
-#  Reviw: Laravel Medialibrary 
+#  Review: Laravel Medialibrary 
 
 ผมใช้ [[php-v7-4]] และ [[laravel-v7]] ในการสาธิต 
 
