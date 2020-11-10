@@ -64,11 +64,14 @@ function writeJson(data) {
 }
 ```
 
+main function
+
 ```js
 // app.js
+
 (async function () {
-    const url = ;`${domain}/set/commonslookup.do?language=th&country=TH&prefix=NUMBER`
-    const companies = await getData()
+    const url = `${domain}/set/commonslookup.do?language=th&country=TH&prefix=NUMBER`
+    const companies = await getData(url)
     writeJson(companies)
 })()
 ```
