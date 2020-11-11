@@ -1,3 +1,3 @@
 # Zsh
 
-[ohmyz.sh](https://ohmyz.sh/)
+- [ohmyz.sh](https://ohmyz.sh/)
