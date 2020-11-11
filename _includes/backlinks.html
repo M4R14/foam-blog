@@ -1,0 +1,34 @@
+<!-- Add backlinks to the current page --> 
+{%- assign link_count = 0 -%}
+{%- assign wiki_link_title = '[' | append: page.title | append: ']' -%}
+{%- assign wiki_link_title_downcase = wiki_link_title | downcase -%}
+{% assign posts = site.pages | where_exp: "item", "item.name contains '.md'" %}
+{%- for note in posts -%}
+    {%- if note.url != page.url -%}
+        {%- assign content_downcase = note.content | downcase -%}
+        {%- if (content_downcase contains wiki_link_title_downcase) -%}
+            {%- assign link_count = link_count | plus:1 -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- if link_count > 0 -%}
+<div class="related" id="jekyll-seamless-backlinks">
+    <h4 class="medium-small">Linked References</h4>
+    <div class="related-wrapper">
+        {%- for note in posts -%}
+        {%- if note.url != page.url -%}
+            {%- assign content_downcase = note.content | downcase -%}
+            {%- if (content_downcase contains wiki_link_title_downcase) -%}
+            <div class="related-group">
+                <a href="{{note.url}}">
+                    <label class="related-title">{{ note.title }}</label>
+                    <p class="related-excerpt">{{ note.content | markdownify | strip_html | truncate: 140 }}</p>
+                </a>
+            </div>
+            {%- endif -%}
+        {%- endif -%}
+        {%- endfor -%}
+    </div>
+    <br/>
+</div>
+{%- endif -%}

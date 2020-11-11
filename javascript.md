@@ -1,4 +1,4 @@
-# Javascipt
+# javascript
 
 - [ryanmcdermott/clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
 - [sorrycc/awesome-javascript](https://github.com/sorrycc/awesome-javascript)

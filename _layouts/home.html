@@ -4,9 +4,49 @@ layout: default
 
 {{ content }}
 
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 <script type="text/javascript">
   // Hack: Replace page-link with "Page Title"
+  let posts = null
+  async function getContent(title) {
+    const data = await fetch("api-posts.html", {
+      headers: { 'Content-Type': 'application/json' },
+    }).then(res => res.json())
+    console.log(data)
+    return data.items.find(md => md.name.replace('.md', '').toLowerCase() === title.toLowerCase())
+  }
+
   document.querySelectorAll(".markdown-body a[title]").forEach((a) => {
+    // a.id = "tooltip"
+   
     a.innerText = a.title;
+
+    const popup = document.createElement('span')
+    popup.className = "popup"
+    document.querySelector('body').appendChild(popup)
+    popup.style.display = "none"; 
+   
+    getContent(a.title).then(data => {
+      popup.innerHTML = data.content
+      Popper.createPopper(a, popup, {
+        placement: 'auto',
+        modifiers: [
+          {
+            name: 'flip',
+            options: {
+              allowedAutoPlacements: ['top', 'bottom'], // by default, all the placements are allowed
+            },
+          },
+        ],
+      });
+      console.log(data.content)
+    })
+
+    a.addEventListener('mouseover', () => {
+      popup.style.display = "block"; 
+    })
+    a.addEventListener('mouseout', () => {
+      popup.style.display = "none"; 
+    })
   });
 </script>

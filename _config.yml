@@ -1,1 +1,14 @@
 theme: jekyll-theme-primer
+plugins:
+  - jekyll-minifier
+  - jekyll-feed 
+  - jekyll-sitemap
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  math_engine: mathjax
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  syntax_highlighter: rouge
